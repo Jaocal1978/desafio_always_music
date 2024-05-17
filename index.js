@@ -51,7 +51,7 @@ const buscarEstudiantes = async () =>
     console.log(response.rows);
 }
 
-//Actualizar Estudiante ej: 'Maria Pizarro' '20.321.654-8' 'Trombon' 5 1
+//Actualizar Estudiante ej: 'Maria Pizarro' '20.321.654-8' 'Flauta' 5 1
 const actualizarEstudiante = async () =>
 {
     const argumentos = process.argv.slice(2);
