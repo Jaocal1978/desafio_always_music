@@ -10,6 +10,7 @@ const config = {
 
 const pool = new Pool(config);
 
+//Insertar Estudiante ej: 'Maria Pizarro' '20.321.654-8' 'Trombon' 5
 const insertarEstudiante = async () =>
 {
     const argumentos = process.argv.slice(2);
@@ -27,6 +28,7 @@ const insertarEstudiante = async () =>
 
 };
 
+//Buscar Estudiante por RUT ej: '20.321.654-8'
 const buscarEstudiante = async () =>
 {
     const argumento = process.argv.slice(2);
@@ -40,6 +42,7 @@ const buscarEstudiante = async () =>
     console.log(response.rows);
 }
 
+//Buscar Todos los Estudiantes En base de datos
 const buscarEstudiantes = async () =>
 {
     const text = "SELECT * FROM clientes";
@@ -48,6 +51,7 @@ const buscarEstudiantes = async () =>
     console.log(response.rows);
 }
 
+//Actualizar Estudiante ej: 'Maria Pizarro' '20.321.654-8' 'Trombon' 5 1
 const actualizarEstudiante = async () =>
 {
     const argumentos = process.argv.slice(2);
@@ -56,14 +60,16 @@ const actualizarEstudiante = async () =>
     let rut = argumentos[1];
     let curso = argumentos[2];
     let nivel = argumentos[3];
+    let id = argumentos[4];
 
-    const text = "UPDATE clientes SET nombre=$1, curso=$3, nivel=$4 WHERE rut = $2";
-    const values = [nombre, rut, curso, nivel];
+    const text = "UPDATE clientes SET nombre=$1, rut = $2, curso=$3, nivel=$4 WHERE id = $5";
+    const values = [nombre, rut, curso, nivel, id];
 
     const response = await pool.query(text, values);
     console.log(`Estudiante ${nombre} editado con exito`);
 }
 
+//Eliminar Estudiante ej: '20.321.654-8'
 const eliminarEstudiante = async () =>
 {
     const argumento = process.argv.slice(2);
